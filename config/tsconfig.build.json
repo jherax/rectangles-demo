@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig",
+  "exclude": [
+    "../**/node_modules",
+    "../**/dist",
+    "../**/coverage",
+    "../**/reports",
+    "../**/__mocks__",
+    "../**/__tests__",
+    "../**/*.test.*",
+    "../**/*.spec.ts"
+  ],
+  "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false
+  }
+}
