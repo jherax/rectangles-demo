@@ -25,6 +25,7 @@ module.exports = {
     'spaced-comment': ['warn', 'always'],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
   },
