@@ -21,15 +21,15 @@ const sharedConfig = {
   bundle: true,
   minify: true,
   sourcemap: true,
-  tsconfig: 'config/tsconfig.build.json',
   drop: ['debugger'],
+  tsconfig: 'config/tsconfig.build.json',
+  external: Object.keys(dependencies).concat(Object.keys(devDependencies)),
 };
 
 build({
   ...sharedConfig,
   platform: 'node', // for CJS
   outfile: 'dist/index.js',
-  external: Object.keys(devDependencies),
 });
 
 build({
@@ -37,5 +37,4 @@ build({
   platform: 'node', // for ESM
   format: 'esm',
   outfile: 'dist/index.esm.mjs',
-  external: Object.keys(dependencies).concat(Object.keys(devDependencies)),
 });
