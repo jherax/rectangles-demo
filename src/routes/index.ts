@@ -4,6 +4,8 @@ import adjacencyController from '../controllers/adjacency/adjacencyController';
 import adjacencyValidator from '../controllers/adjacency/adjacencyValidator';
 import containmentController from '../controllers/containment/containmentController';
 import containmentValidator from '../controllers/containment/containmentValidator';
+import intersectionController from '../controllers/intersection/intersectionController';
+import intersectionValidator from '../controllers/intersection/intersectionValidator';
 import config from '../server/config';
 
 /**
@@ -23,6 +25,7 @@ export default function registerRoutes(app: Express) {
   // routes of the API
   router.post('/containment', containmentValidator, containmentController);
   router.post('/adjacency', adjacencyValidator, adjacencyController);
+  router.post('/intersection', intersectionValidator, intersectionController);
 
   app.use(config.app.apiPrefix, router);
 }

@@ -59,3 +59,25 @@ Content-Type: application/json
     "y2": 165
   }
 }
+
+######################
+### Gets the new Rectangle of the intersection between 2 rectangles.
+### No intersection: is adjacent, not overlapping
+
+POST http://localhost:{{app_port}}/api/v1/intersection
+Content-Type: application/json
+
+{
+  "rect1": {
+    "x1": 90,
+    "y1": 40,
+    "x2": 110,
+    "y2": 50
+  },
+  "rect2": {
+    "x1": 10,
+    "y1": 5,
+    "x2": 90,
+    "y2": 65
+  }
+}
