@@ -1,0 +1,39 @@
+@app_port = {{$dotenv APP_PORT}}
+
+######################
+### Determines if "smallRect" is contained by "bigRect".
+### Not contained: "smallRect" is above "bigRect"
+
+POST http://localhost:{{app_port}}/api/v1/containment
+Content-Type: application/json
+
+{
+  "bigRect": {
+    "x1": 45,
+    "y1": 35,
+    "x2": 120,
+    "y2": 70
+  },
+  "smallRect": {
+    "x1": 10,
+    "y1": 75,
+    "x2": 90,
+    "y2": 165
+  }
+}
+
+######################
+### Throw error: "Cannot read properties of null..."
+
+POST http://localhost:{{app_port}}/api/v1/containment
+Content-Type: application/json
+
+{
+  "bigRect": {
+    "x1": 45,
+    "y1": 35,
+    "x2": 120,
+    "y2": 70
+  },
+  "smallRect": null
+}
