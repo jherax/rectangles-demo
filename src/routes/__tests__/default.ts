@@ -18,11 +18,11 @@ describe('Testing default GET "/"', () => {
     const reply = await request(server).get('/');
 
     expect(reply.statusCode).toBe(200);
-    expect(reply.text).toBe(getExpectedText());
+    expect(reply.text).toMatch(getExpectedText());
     expect(reply.type).toBe('text/html');
   });
 });
 
 function getExpectedText() {
-  return `<h3>Default Page</h3>`;
+  return `Demo Analyzing Rectangles`;
 }

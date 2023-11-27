@@ -1,4 +1,5 @@
 import express, {type Express, type Request, type Response} from 'express';
+import path from 'path';
 
 import adjacencyController from '../controllers/adjacency/adjacencyController';
 import adjacencyValidator from '../controllers/adjacency/adjacencyValidator';
@@ -14,13 +15,17 @@ import config from '../server/config';
 
 export default function registerRoutes(app: Express) {
   const router = express.Router();
+  const publicFolder = config.app.public;
 
   // routes with no prefix
   app.route('/').get((req: Request, res: Response) => {
-    res.send('<h3>Default Page</h3>');
+    res.sendFile(path.join(process.cwd(), publicFolder.html, '/README.html'));
   });
 
-  app.use('/public', express.static(process.cwd() + config.app.images));
+  app.use(
+    '/public',
+    express.static(path.join(process.cwd(), publicFolder.images)),
+  );
 
   // routes of the API
   router.post('/containment', containmentValidator, containmentController);
