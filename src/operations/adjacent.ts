@@ -1,7 +1,7 @@
 import type {Coordinates, Rectangle} from '../models/Rectangle';
 
 /**
- * Gets the coordinates of the external adjacency between rectangles.
+ * Gets the coordinates of the adjacency between two rectangles.
  * The coordinates can represent a line in X or Y axis.
  *
  * Considerations:

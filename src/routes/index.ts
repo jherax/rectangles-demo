@@ -1,5 +1,7 @@
 import express, {type Express, type Request, type Response} from 'express';
 
+import adjacencyController from '../controllers/adjacency/adjacencyController';
+import adjacencyValidator from '../controllers/adjacency/adjacencyValidator';
 import containmentController from '../controllers/containment/containmentController';
 import containmentValidator from '../controllers/containment/containmentValidator';
 import config from '../server/config';
@@ -20,6 +22,7 @@ export default function registerRoutes(app: Express) {
 
   // routes of the API
   router.post('/containment', containmentValidator, containmentController);
+  router.post('/adjacency', adjacencyValidator, adjacencyController);
 
   app.use(config.app.apiPrefix, router);
 }
