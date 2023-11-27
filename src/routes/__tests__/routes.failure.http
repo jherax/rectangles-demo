@@ -37,3 +37,25 @@ Content-Type: application/json
   },
   "smallRect": null
 }
+
+######################
+### Gets the coordinates of the adjacency between two rectangles.
+### No adjacent lines: "rect2" above "rect1"
+
+POST http://localhost:{{app_port}}/api/v1/adjacency
+Content-Type: application/json
+
+{
+  "rect1": {
+    "x1": 45,
+    "y1": 35,
+    "x2": 120,
+    "y2": 70
+  },
+  "rect2": {
+    "x1": 10,
+    "y1": 75,
+    "x2": 90,
+    "y2": 165
+  }
+}

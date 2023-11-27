@@ -31,7 +31,7 @@ describe('Testing adjacency between rectangles', () => {
     const r4 = new Rectangle({x: 15, y: 5}, {x: 170, y: 70});
     expect(adjacent(r3, r4)).toBeNull();
 
-    // not adjacent at all, r5 above r5
+    // not adjacent at all, r6 above r5
     const r5 = new Rectangle({x: 45, y: 35}, {x: 120, y: 70});
     const r6 = new Rectangle({x: 10, y: 75}, {x: 90, y: 165});
     expect(adjacent(r5, r6)).toBeNull();

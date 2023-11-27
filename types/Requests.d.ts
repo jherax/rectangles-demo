@@ -8,6 +8,16 @@ declare interface ContainmentResponse {
   message: string;
 }
 
+declare interface AdjacencyRequest {
+  rect1: Coordinates;
+  rect2: Coordinates;
+}
+
+declare interface AdjacencyResponse {
+  adjacentLine: Coordinates;
+  message: string;
+}
+
 interface Coordinates {
   x1: number;
   y1: number;
