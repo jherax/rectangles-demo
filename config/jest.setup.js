@@ -25,6 +25,10 @@ jest.mock('../src/server/config', () => {
     app: {
       host: 'localhost',
       port: 8888,
+      public: {
+        images: '/public/img/',
+        html: '/public/html/',
+      },
       apiPrefix: '/api/v1',
       maxRequests: 5,
     },
