@@ -3,7 +3,8 @@ import cors from 'cors';
 import express, {type Express} from 'express';
 import http, {type Server} from 'http';
 
-import registerRoutes from '../routes';
+import defaultRoutes from '../routes/default';
+import handleErrors from '../routes/errors';
 import config from './config';
 import logger from './logger';
 
@@ -18,7 +19,8 @@ export const initServer = async () => {
   app.use(bodyparser.json());
   app.use(bodyparser.urlencoded({extended: false}));
 
-  registerRoutes(app);
+  defaultRoutes(app);
+  handleErrors(app);
   server = http.createServer(app);
   return server;
 };
