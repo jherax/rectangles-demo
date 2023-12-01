@@ -1,5 +1,6 @@
 import type {Request, Response} from 'express';
 
+import {type ContainmentResponse} from '../../../types/Requests';
 import {type Coordinates, Rectangle} from '../../models/Rectangle';
 import contained from '../../operations/contained';
 import messages from '../../server/messages';

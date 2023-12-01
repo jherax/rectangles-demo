@@ -1,6 +1,10 @@
 import type {Server} from 'http';
 import {agent as request} from 'supertest';
 
+import type {
+  ContainmentRequest,
+  ContainmentResponse,
+} from '../../../types/Requests';
 import {initServer} from '../../server';
 import config from '../../server/config';
 import messages from '../../server/messages';

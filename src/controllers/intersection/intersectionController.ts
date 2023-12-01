@@ -1,5 +1,6 @@
 import type {Request, Response} from 'express';
 
+import {type IntersectionResponse} from '../../../types/Requests';
 import {type Coordinates, Rectangle} from '../../models/Rectangle';
 import intersect from '../../operations/intersect';
 import messages from '../../server/messages';

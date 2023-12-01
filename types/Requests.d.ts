@@ -1,36 +1,33 @@
-declare interface ContainmentRequest {
+import {type Coordinates} from '../src/models/Rectangle';
+
+export interface ContainmentRequest {
   bigRect: Coordinates;
   smallRect: Coordinates;
 }
 
-declare interface ContainmentResponse {
-  isContained: bool;
+export interface ContainmentResponse {
+  isContained: boolean;
   message: string;
 }
 
-declare interface AdjacencyRequest {
+export interface AdjacencyRequest {
   rect1: Coordinates;
   rect2: Coordinates;
 }
 
-declare interface AdjacencyResponse {
+export interface AdjacencyResponse {
   adjacentLine: Coordinates;
   message: string;
 }
 
-declare interface IntersectionRequest {
+export interface IntersectionRequest {
   rect1: Coordinates;
   rect2: Coordinates;
 }
 
-declare interface IntersectionResponse {
+export interface IntersectionResponse {
   intersection: Coordinates;
   message: string;
 }
 
-interface Coordinates {
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
-}
+export {};

@@ -1,5 +1,6 @@
 import type {Request, Response} from 'express';
 
+import {type AdjacencyResponse} from '../../../types/Requests';
 import {type Coordinates, Rectangle} from '../../models/Rectangle';
 import adjacent from '../../operations/adjacent';
 import messages from '../../server/messages';
