@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ######################
-### Throw error: "Cannot read properties of null..."
+### Throw error: "Invalid object in the payload"
 
 POST http://localhost:{{app_port}}/api/v1/containment
 Content-Type: application/json

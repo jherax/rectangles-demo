@@ -72,5 +72,8 @@
     "src/**/*.{js,jsx,ts,tsx}": [
       "npm run test:staged"
     ]
-  }
+  },
+  "eslintIgnore": [
+    "src/swagger/**"
+  ]
 }

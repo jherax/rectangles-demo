@@ -5,6 +5,7 @@ import http, {type Server} from 'http';
 
 import defaultRoutes from '../routes/default';
 import handleErrors from '../routes/errors';
+import {RegisterRoutes} from '../swagger/routes';
 import config from './config';
 import logger from './logger';
 
@@ -18,8 +19,10 @@ export const initServer = async () => {
   app.use(cors());
   app.use(bodyparser.json());
   app.use(bodyparser.urlencoded({extended: false}));
+  // Helmet: https://github.com/scottie1984/swagger-ui-express/issues/237#issuecomment-903628171
 
   defaultRoutes(app);
+  RegisterRoutes(app);
   handleErrors(app);
   server = http.createServer(app);
   return server;

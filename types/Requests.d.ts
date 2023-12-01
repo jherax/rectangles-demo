@@ -1,13 +1,15 @@
-import {type Coordinates} from '../src/models/Rectangle';
+import type {Coordinates} from '../src/models/Rectangle';
 
 export interface ContainmentRequest {
   bigRect: Coordinates;
   smallRect: Coordinates;
 }
 
-export interface ContainmentResponse {
-  isContained: boolean;
-  message: string;
+export interface ContainmentResponse extends ServerMessage {
+  data: {
+    isContained: boolean;
+    message: string;
+  };
 }
 
 export interface AdjacencyRequest {
@@ -15,9 +17,11 @@ export interface AdjacencyRequest {
   rect2: Coordinates;
 }
 
-export interface AdjacencyResponse {
-  adjacentLine: Coordinates;
-  message: string;
+export interface AdjacencyResponse extends ServerMessage {
+  data: {
+    adjacentLine: Coordinates;
+    message: string;
+  };
 }
 
 export interface IntersectionRequest {
@@ -25,18 +29,19 @@ export interface IntersectionRequest {
   rect2: Coordinates;
 }
 
-export interface IntersectionResponse {
-  intersection: Coordinates;
-  message: string;
+export interface IntersectionResponse extends ServerMessage {
+  data: {
+    intersection: Coordinates;
+    message: string;
+  };
 }
 
 export interface IController<TInput, TOutput> {
   operate: (requestBody: TInput) => TOutput;
 }
 
-export interface ServerResponse<TData> {
+declare type ServerMessage = {
   statusCode: number;
   message: string;
   success: boolean;
-  data: TData;
-}
+};

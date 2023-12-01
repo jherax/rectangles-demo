@@ -1,0 +1,309 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Coordinates": {
+				"properties": {
+					"x1": {
+						"type": "number",
+						"format": "double"
+					},
+					"y1": {
+						"type": "number",
+						"format": "double"
+					},
+					"x2": {
+						"type": "number",
+						"format": "double"
+					},
+					"y2": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"x1",
+					"y1",
+					"x2",
+					"y2"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AdjacencyResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"statusCode": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"properties": {
+							"message": {
+								"type": "string"
+							},
+							"adjacentLine": {
+								"$ref": "#/components/schemas/Coordinates"
+							}
+						},
+						"required": [
+							"message",
+							"adjacentLine"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"success",
+					"message",
+					"statusCode",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AdjacencyRequest": {
+				"properties": {
+					"rect1": {
+						"$ref": "#/components/schemas/Coordinates"
+					},
+					"rect2": {
+						"$ref": "#/components/schemas/Coordinates"
+					}
+				},
+				"required": [
+					"rect1",
+					"rect2"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ContainmentResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"statusCode": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"properties": {
+							"message": {
+								"type": "string"
+							},
+							"isContained": {
+								"type": "boolean"
+							}
+						},
+						"required": [
+							"message",
+							"isContained"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"success",
+					"message",
+					"statusCode",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ContainmentRequest": {
+				"properties": {
+					"bigRect": {
+						"$ref": "#/components/schemas/Coordinates"
+					},
+					"smallRect": {
+						"$ref": "#/components/schemas/Coordinates"
+					}
+				},
+				"required": [
+					"bigRect",
+					"smallRect"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IntersectionResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"statusCode": {
+						"type": "number",
+						"format": "double"
+					},
+					"data": {
+						"properties": {
+							"message": {
+								"type": "string"
+							},
+							"intersection": {
+								"$ref": "#/components/schemas/Coordinates"
+							}
+						},
+						"required": [
+							"message",
+							"intersection"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"success",
+					"message",
+					"statusCode",
+					"data"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IntersectionRequest": {
+				"properties": {
+					"rect1": {
+						"$ref": "#/components/schemas/Coordinates"
+					},
+					"rect2": {
+						"$ref": "#/components/schemas/Coordinates"
+					}
+				},
+				"required": [
+					"rect1",
+					"rect2"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "rectangles-demo",
+		"version": "0.1.0",
+		"description": "Demo Analyzing Rectangles",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "David Rivera ",
+			"email": "jherax@gmail.com"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/adjacency": {
+			"post": {
+				"operationId": "Operate",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AdjacencyResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Gets the `Coordinates` of the adjacency between two rectangles.\n`Coordinates` is a shared boundary and can be a line on the X or Y axis.",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AdjacencyRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/containment": {
+			"post": {
+				"operationId": "Operate",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ContainmentResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Determines whether `smallRect` is completely contained in `bigRect`",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ContainmentRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/intersection": {
+			"post": {
+				"operationId": "Operate",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IntersectionResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Gets the `Coordinates` of the new rectangle from the intersection between 2 rectangles.",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IntersectionRequest"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/api/v1"
+		}
+	]
+}

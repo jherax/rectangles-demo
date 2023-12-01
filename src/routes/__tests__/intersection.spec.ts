@@ -11,7 +11,7 @@ import messages from '../../server/messages';
 
 let server: Server;
 const version = config.app.apiPrefix;
-const {SUCCESSFUL, INTERNAL_SERVER_ERROR} = messages;
+const {SUCCESSFUL, INCOMPLETE_REQUEST} = messages;
 
 describe(`Testing POST "${version}/intersection"`, () => {
   beforeAll(async () => {
@@ -32,17 +32,17 @@ describe(`Testing POST "${version}/intersection"`, () => {
     const reply = await request(server)
       .post(`${version}/intersection`)
       .send(payload);
-    const outData: IntersectionResponse = reply.body.data;
+    const response: IntersectionResponse = reply.body;
 
     expect(reply.statusCode).toEqual(200);
-    expect(reply.body.message).toBe(SUCCESSFUL.message);
-    expect(outData.intersection).toStrictEqual({
+    expect(response.message).toBe(SUCCESSFUL.message);
+    expect(response.data.intersection).toStrictEqual({
       x1: 35,
       y1: 20,
       x2: 55,
       y2: 40,
     });
-    expect(outData.message).toEqual('Intersection with overlap');
+    expect(response.data.message).toEqual('Intersection with overlap');
   });
 
   it(`should return a 500 error when the payload is not valid`, async () => {
@@ -56,10 +56,10 @@ describe(`Testing POST "${version}/intersection"`, () => {
       .send(payload);
     const response: ServerResponse = reply.body;
 
-    expect(response.statusCode).toBe(500);
-    expect(response.message).toBe(INTERNAL_SERVER_ERROR.message);
+    expect(response.statusCode).toBe(422);
+    expect(response.message).toBe(INCOMPLETE_REQUEST.message);
     expect(response.success).toBe(false);
-    expect(response.error.message).toMatch('Cannot read properties of null');
+    expect(response.error.message).toMatch('Invalid object in the payload');
     expect(response.error.stack).toBeDefined();
   });
 });

@@ -20,6 +20,9 @@ export class IntersectionController
   extends Controller
   implements IController<IntersectionRequest, IntersectionResponse>
 {
+  /**
+   * Gets the `Coordinates` of the new rectangle from the intersection between 2 rectangles.
+   */
   @SuccessResponse(SUCCESSFUL.statusCode, SUCCESSFUL.message)
   @Post()
   public operate(@Body() requestBody: IntersectionRequest) {
@@ -42,12 +45,15 @@ export class IntersectionController
       ? 'Intersection with overlap'
       : 'No intersection';
 
-    const data: IntersectionResponse = {
-      intersection,
-      message,
+    const result: IntersectionResponse = {
+      ...SUCCESSFUL,
+      data: {
+        intersection,
+        message,
+      },
     };
 
     this.setStatus(SUCCESSFUL.statusCode);
-    return data;
+    return result;
   }
 }

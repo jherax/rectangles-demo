@@ -20,6 +20,9 @@ export class ContainmentController
   extends Controller
   implements IController<ContainmentRequest, ContainmentResponse>
 {
+  /**
+   * Determines whether `smallRect` is completely contained in `bigRect`
+   */
   @SuccessResponse(SUCCESSFUL.statusCode, SUCCESSFUL.message)
   @Post()
   public operate(@Body() requestBody: ContainmentRequest) {
@@ -41,12 +44,15 @@ export class ContainmentController
       ? 'smallRect is contained by bigRect'
       : 'smallRect is not contained by bigRect';
 
-    const data: ContainmentResponse = {
-      isContained,
-      message,
+    const result: ContainmentResponse = {
+      ...SUCCESSFUL,
+      data: {
+        isContained,
+        message,
+      },
     };
 
     this.setStatus(SUCCESSFUL.statusCode);
-    return data;
+    return result;
   }
 }

@@ -1,22 +1,30 @@
-import express, {type Express, type Request, type Response} from 'express';
-import path from 'path';
+import path from 'node:path';
 
-import {AdjacencyController} from '../controllers/adjacency/AdjacencyController';
-import {ContainmentController} from '../controllers/containment/ContainmentController';
-import {IntersectionController} from '../controllers/intersection/IntersectionController';
+import express, {type Express, type Request, type Response} from 'express';
+import swaggerUi from 'swagger-ui-express';
+
 import config from '../server/config';
-import messages from '../server/messages';
-import {sendSuccess} from '../server/responses';
 
 /**
  * @see https://expressjs.com/en/guide/routing.html
  */
 
 export default function defaultRoutes(app: Express) {
-  const router = express.Router();
   const publicFolder = config.app.public;
 
-  // routes with no prefix
+  /**
+   * @see https://tsoa-community.github.io/docs/live-reloading.html
+   */
+  app.use(
+    ['/docs', '/openapi', '/swagger'],
+    // this added to fix a problem in PROD environment
+    express.static('node_modules/swagger-ui-dist/', {index: false}),
+    swaggerUi.serve,
+    // swaggerUi.setup(require('../swagger/swagger.json')),
+    async (_req: Request, res: Response) =>
+      res.send(swaggerUi.generateHTML(await import('../swagger/swagger.json'))),
+  );
+
   app.route('/').get((req: Request, res: Response) => {
     res.sendFile(path.join(process.cwd(), publicFolder.html, '/README.html'));
   });
@@ -25,25 +33,4 @@ export default function defaultRoutes(app: Express) {
     '/public',
     express.static(path.join(process.cwd(), publicFolder.images)),
   );
-
-  // routes of the API
-  router.post('/containment', (req: Request, res: Response) => {
-    const controller = new ContainmentController();
-    const data = controller.operate(req.body);
-    sendSuccess(res, messages.SUCCESSFUL, data);
-  });
-
-  router.post('/adjacency', (req: Request, res: Response) => {
-    const controller = new AdjacencyController();
-    const data = controller.operate(req.body);
-    sendSuccess(res, messages.SUCCESSFUL, data);
-  });
-
-  router.post('/intersection', (req: Request, res: Response) => {
-    const controller = new IntersectionController();
-    const data = controller.operate(req.body);
-    sendSuccess(res, messages.SUCCESSFUL, data);
-  });
-
-  app.use(config.app.apiPrefix, router);
 }

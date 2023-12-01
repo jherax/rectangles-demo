@@ -20,6 +20,10 @@ export class AdjacencyController
   extends Controller
   implements IController<AdjacencyRequest, AdjacencyResponse>
 {
+  /**
+   * Gets the `Coordinates` of the adjacency between two rectangles.
+   * `Coordinates` is a shared boundary and can be a line on the X or Y axis.
+   */
   @SuccessResponse(SUCCESSFUL.statusCode, SUCCESSFUL.message)
   @Post()
   public operate(@Body() requestBody: AdjacencyRequest) {
@@ -41,12 +45,15 @@ export class AdjacencyController
       ? 'Matched adjacent line'
       : 'No adjacent lines';
 
-    const data: AdjacencyResponse = {
-      adjacentLine,
-      message,
+    const result: AdjacencyResponse = {
+      ...SUCCESSFUL,
+      data: {
+        adjacentLine,
+        message,
+      },
     };
 
     this.setStatus(SUCCESSFUL.statusCode);
-    return data;
+    return result;
   }
 }

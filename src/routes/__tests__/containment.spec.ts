@@ -11,7 +11,7 @@ import messages from '../../server/messages';
 
 let server: Server;
 const version = config.app.apiPrefix;
-const {SUCCESSFUL, INTERNAL_SERVER_ERROR} = messages;
+const {SUCCESSFUL, INCOMPLETE_REQUEST} = messages;
 
 describe(`Testing POST "${version}/containment"`, () => {
   beforeAll(async () => {
@@ -32,12 +32,12 @@ describe(`Testing POST "${version}/containment"`, () => {
     const reply = await request(server)
       .post(`${version}/containment`)
       .send(payload);
-    const outData: ContainmentResponse = reply.body.data;
+    const response: ContainmentResponse = reply.body;
 
     expect(reply.statusCode).toEqual(200);
-    expect(reply.body.message).toBe(SUCCESSFUL.message);
-    expect(outData.isContained).toEqual(true);
-    expect(outData.message).toEqual('smallRect is contained by bigRect');
+    expect(response.message).toBe(SUCCESSFUL.message);
+    expect(response.data.isContained).toEqual(true);
+    expect(response.data.message).toEqual('smallRect is contained by bigRect');
   });
 
   it(`should return a 500 error when the payload is not valid`, async () => {
@@ -51,10 +51,10 @@ describe(`Testing POST "${version}/containment"`, () => {
       .send(payload);
     const response: ServerResponse = reply.body;
 
-    expect(response.statusCode).toBe(500);
-    expect(response.message).toBe(INTERNAL_SERVER_ERROR.message);
+    expect(response.statusCode).toBe(422);
+    expect(response.message).toBe(INCOMPLETE_REQUEST.message);
     expect(response.success).toBe(false);
-    expect(response.error.message).toMatch('Cannot read properties of null');
+    expect(response.error.message).toMatch('Invalid object in the payload');
     expect(response.error.stack).toBeDefined();
   });
 });

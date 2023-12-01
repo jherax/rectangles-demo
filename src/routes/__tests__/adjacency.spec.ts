@@ -11,7 +11,7 @@ import messages from '../../server/messages';
 
 let server: Server;
 const version = config.app.apiPrefix;
-const {SUCCESSFUL, INTERNAL_SERVER_ERROR} = messages;
+const {SUCCESSFUL, INCOMPLETE_REQUEST} = messages;
 
 describe(`Testing POST "${version}/adjacency"`, () => {
   beforeAll(async () => {
@@ -32,17 +32,17 @@ describe(`Testing POST "${version}/adjacency"`, () => {
     const reply = await request(server)
       .post(`${version}/adjacency`)
       .send(payload);
-    const outData: AdjacencyResponse = reply.body.data;
+    const response: AdjacencyResponse = reply.body;
 
     expect(reply.statusCode).toEqual(200);
-    expect(reply.body.message).toBe(SUCCESSFUL.message);
-    expect(outData.adjacentLine).toStrictEqual({
+    expect(response.message).toBe(SUCCESSFUL.message);
+    expect(response.data.adjacentLine).toStrictEqual({
       x1: 85,
       y1: 65,
       x2: 170,
       y2: 65,
     });
-    expect(outData.message).toEqual('Matched adjacent line');
+    expect(response.data.message).toEqual('Matched adjacent line');
   });
 
   it(`should return a 500 error when the payload is not valid`, async () => {
@@ -56,10 +56,10 @@ describe(`Testing POST "${version}/adjacency"`, () => {
       .send(payload);
     const response: ServerResponse = reply.body;
 
-    expect(response.statusCode).toBe(500);
-    expect(response.message).toBe(INTERNAL_SERVER_ERROR.message);
+    expect(response.statusCode).toBe(422);
+    expect(response.message).toBe(INCOMPLETE_REQUEST.message);
     expect(response.success).toBe(false);
-    expect(response.error.message).toMatch('Cannot read properties of null');
+    expect(response.error.message).toMatch('Invalid object in the payload');
     expect(response.error.stack).toBeDefined();
   });
 });
