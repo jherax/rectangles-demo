@@ -19,6 +19,7 @@ export function sendError(response: Response, err: ServerError) {
   const serverMsg: ServerResponse = messages[msgKey];
   serverMsg.error = {
     message: err.message,
+    details: err?.fields,
     stack: err.stack,
   };
   return response.status(errorCode).json(serverMsg);
@@ -26,4 +27,5 @@ export function sendError(response: Response, err: ServerError) {
 
 interface ServerError extends Partial<Error> {
   code?: number;
+  fields?: unknown;
 }

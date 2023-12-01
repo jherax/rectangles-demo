@@ -23,5 +23,6 @@ declare interface ServerResponse<T = JSONObject> extends ServerMessage {
   error?: {
     message: string;
     stack: string;
+    details?: unknown;
   };
 }

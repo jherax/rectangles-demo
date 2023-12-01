@@ -54,8 +54,8 @@ const messages: Record<string, ServerMessage> = {
   },
   NOT_FOUND: {
     statusCode: 404,
-    success: true,
     message: 'Requested API not found',
+    success: false,
   },
   INCOMPLETE_REQUEST: {
     statusCode: 422,
