@@ -1,10 +1,14 @@
 # Demo Analyzing Rectangles
 
+[Express](https://expressjs.com/) + [Swagger](https://swagger.io/) +
+[tsoa](https://tsoa-community.github.io/docs/introduction.html)
+
 ## Environment
 
 This aplication is created using Node.js v18. It is recommended using
 **[nvm](https://github.com/creationix/nvm)** (Node Version Manager) to manage
-Node.js versions. Go to https://github.com/creationix/nvm and check the
+Node.js versions. Go to
+[github.com/creationix/nvm](https://github.com/creationix/nvm) and check the
 installation process for your OS.
 
 Make sure to set the env variables. For local environment you can create a
