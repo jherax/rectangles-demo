@@ -27,7 +27,7 @@
     "gendocs": "node config/md2html.js",
     "lint": "eslint . --ext .ts",
     "test": "jest -c=config/jest.config.js --detectOpenHandles",
-    "test:staged": "jest -c=config/jest.config.js --bail --findRelatedTests",
+    "test:staged": "jest -c=config/jest.config.js --bail --findRelatedTests --passWithNoTests",
     "test:watch": "jest -c=config/jest.config.js --silent=false --verbose --watch",
     "swagger": "tsoa spec-and-routes"
   },

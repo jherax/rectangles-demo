@@ -38,8 +38,3 @@ export const startServer = async () => {
   });
   return server;
 };
-
-process.on('unhandledRejection', err => {
-  logger.error(err);
-  process.exit(1);
-});

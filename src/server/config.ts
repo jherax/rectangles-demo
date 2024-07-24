@@ -11,7 +11,7 @@ const config = {
       html: '/public/html/',
     },
     apiPrefix: '/api/v1',
-    maxRequests: +(process.env.MAX_REQUESTS_PER_WINDOW || 100),
+    maxRequests: +process.env.MAX_REQUESTS_PER_WINDOW || 100,
   },
 };
 
