@@ -199,7 +199,7 @@
 	"info": {
 		"title": "rectangles-demo",
 		"version": "0.1.0",
-		"description": "Demo Analyzing Rectangles",
+		"description": "Analyzing Rectangles",
 		"license": {
 			"name": "ISC"
 		},

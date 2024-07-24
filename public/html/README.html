@@ -1,474 +1,99 @@
+
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>README.md</title>
-    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-
-    <style>
-      /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
-      /*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-      body {
-        font-family: var(
-          --vscode-markdown-font-family,
-          -apple-system,
-          BlinkMacSystemFont,
-          'Segoe WPC',
-          'Segoe UI',
-          'Ubuntu',
-          'Droid Sans',
-          sans-serif
-        );
-        font-size: var(--vscode-markdown-font-size, 14px);
-        padding: 0 26px;
-        line-height: var(--vscode-markdown-line-height, 22px);
-        word-wrap: break-word;
-      }
-
-      #code-csp-warning {
-        position: fixed;
-        top: 0;
-        right: 0;
-        color: white;
-        margin: 16px;
-        text-align: center;
-        font-size: 12px;
-        font-family: sans-serif;
-        background-color: #444444;
-        cursor: pointer;
-        padding: 6px;
-        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
-      }
-
-      #code-csp-warning:hover {
-        text-decoration: none;
-        background-color: #007acc;
-        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-      }
-
-      body.scrollBeyondLastLine {
-        margin-bottom: calc(100vh - 22px);
-      }
-
-      body.showEditorSelection .code-line {
-        position: relative;
-      }
-
-      body.showEditorSelection .code-active-line:before,
-      body.showEditorSelection .code-line:hover:before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 0;
-        left: -12px;
-        height: 100%;
-      }
-
-      body.showEditorSelection li.code-active-line:before,
-      body.showEditorSelection li.code-line:hover:before {
-        left: -30px;
-      }
-
-      .vscode-light.showEditorSelection .code-active-line:before {
-        border-left: 3px solid rgba(0, 0, 0, 0.15);
-      }
-
-      .vscode-light.showEditorSelection .code-line:hover:before {
-        border-left: 3px solid rgba(0, 0, 0, 0.4);
-      }
-
-      .vscode-light.showEditorSelection .code-line .code-line:hover:before {
-        border-left: none;
-      }
-
-      .vscode-dark.showEditorSelection .code-active-line:before {
-        border-left: 3px solid rgba(255, 255, 255, 0.4);
-      }
-
-      .vscode-dark.showEditorSelection .code-line:hover:before {
-        border-left: 3px solid rgba(255, 255, 255, 0.6);
-      }
-
-      .vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-        border-left: none;
-      }
-
-      .vscode-high-contrast.showEditorSelection .code-active-line:before {
-        border-left: 3px solid rgba(255, 160, 0, 0.7);
-      }
-
-      .vscode-high-contrast.showEditorSelection .code-line:hover:before {
-        border-left: 3px solid rgba(255, 160, 0, 1);
-      }
-
-      .vscode-high-contrast.showEditorSelection
-        .code-line
-        .code-line:hover:before {
-        border-left: none;
-      }
-
-      img {
-        max-width: 100%;
-        max-height: 100%;
-      }
-
-      a {
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      a:focus,
-      input:focus,
-      select:focus,
-      textarea:focus {
-        outline: 1px solid -webkit-focus-ring-color;
-        outline-offset: -1px;
-      }
-
-      hr {
-        border: 0;
-        height: 2px;
-        border-bottom: 2px solid;
-      }
-
-      h1 {
-        padding-bottom: 0.3em;
-        line-height: 1.2;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-      }
-
-      h1,
-      h2,
-      h3 {
-        font-weight: normal;
-      }
-
-      table {
-        border-collapse: collapse;
-      }
-
-      table > thead > tr > th {
-        text-align: left;
-        border-bottom: 1px solid;
-      }
-
-      table > thead > tr > th,
-      table > thead > tr > td,
-      table > tbody > tr > th,
-      table > tbody > tr > td {
-        padding: 5px 10px;
-      }
-
-      table > tbody > tr + tr > td {
-        border-top: 1px solid;
-      }
-
-      blockquote {
-        margin: 0 7px 0 5px;
-        padding: 0 16px 0 10px;
-        border-left-width: 5px;
-        border-left-style: solid;
-      }
-
-      code {
-        font-family: Menlo, Monaco, Consolas, 'Droid Sans Mono', 'Courier New',
-          monospace, 'Droid Sans Fallback';
-        font-size: 1em;
-        line-height: 1.357em;
-      }
-
-      body.wordWrap pre {
-        white-space: pre-wrap;
-      }
-
-      pre:not(.hljs),
-      pre.hljs code > div {
-        padding: 16px;
-        border-radius: 3px;
-        overflow: auto;
-      }
-
-      pre code {
-        color: var(--vscode-editor-foreground);
-        tab-size: 4;
-      }
-
-      /** Theming */
-
-      .vscode-light pre {
-        background-color: rgba(220, 220, 220, 0.4);
-      }
-
-      .vscode-dark pre {
-        background-color: rgba(10, 10, 10, 0.4);
-      }
-
-      .vscode-high-contrast pre {
-        background-color: rgb(0, 0, 0);
-      }
-
-      .vscode-high-contrast h1 {
-        border-color: rgb(0, 0, 0);
-      }
-
-      .vscode-light table > thead > tr > th {
-        border-color: rgba(0, 0, 0, 0.69);
-      }
-
-      .vscode-dark table > thead > tr > th {
-        border-color: rgba(255, 255, 255, 0.69);
-      }
-
-      .vscode-light h1,
-      .vscode-light hr,
-      .vscode-light table > tbody > tr + tr > td {
-        border-color: rgba(0, 0, 0, 0.18);
-      }
-
-      .vscode-dark h1,
-      .vscode-dark hr,
-      .vscode-dark table > tbody > tr + tr > td {
-        border-color: rgba(255, 255, 255, 0.18);
-      }
-    </style>
-
-    <style>
-      /* Tomorrow Theme */
-      /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-      /* Original theme - https://github.com/chriskempson/tomorrow-theme */
-
-      /* Tomorrow Comment */
-      .hljs-comment,
-      .hljs-quote {
-        color: #8e908c;
-      }
-
-      /* Tomorrow Red */
-      .hljs-variable,
-      .hljs-template-variable,
-      .hljs-tag,
-      .hljs-name,
-      .hljs-selector-id,
-      .hljs-selector-class,
-      .hljs-regexp,
-      .hljs-deletion {
-        color: #c82829;
-      }
-
-      /* Tomorrow Orange */
-      .hljs-number,
-      .hljs-built_in,
-      .hljs-builtin-name,
-      .hljs-literal,
-      .hljs-type,
-      .hljs-params,
-      .hljs-meta,
-      .hljs-link {
-        color: #f5871f;
-      }
-
-      /* Tomorrow Yellow */
-      .hljs-attribute {
-        color: #eab700;
-      }
-
-      /* Tomorrow Green */
-      .hljs-string,
-      .hljs-symbol,
-      .hljs-bullet,
-      .hljs-addition {
-        color: #718c00;
-      }
-
-      /* Tomorrow Blue */
-      .hljs-title,
-      .hljs-section {
-        color: #4271ae;
-      }
-
-      /* Tomorrow Purple */
-      .hljs-keyword,
-      .hljs-selector-tag {
-        color: #8959a8;
-      }
-
-      .hljs {
-        display: block;
-        overflow-x: auto;
-        color: #4d4d4c;
-        padding: 0.5em;
-      }
-
-      .hljs-emphasis {
-        font-style: italic;
-      }
-
-      .hljs-strong {
-        font-weight: bold;
-      }
-    </style>
-
-    <style>
-      /*
- * Markdown PDF CSS
- */
-
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI',
-          'Ubuntu', 'Droid Sans', sans-serif, 'Meiryo';
-        padding: 0 12px;
-      }
-
-      pre {
-        background-color: #f8f8f8;
-        border: 1px solid #cccccc;
-        border-radius: 3px;
-        overflow-x: auto;
-        white-space: pre-wrap;
-        overflow-wrap: break-word;
-      }
-
-      pre:not(.hljs) {
-        padding: 23px;
-        line-height: 19px;
-      }
-
-      blockquote {
-        background: rgba(127, 127, 127, 0.1);
-        border-color: rgba(0, 122, 204, 0.5);
-      }
-
-      .emoji {
-        height: 1.4em;
-      }
-
-      code {
-        font-size: 14px;
-        line-height: 19px;
-      }
-
-      /* for inline code */
-      :not(pre):not(.hljs) > code {
-        color: #c9ae75; /* Change the old color so it seems less like an error */
-        font-size: inherit;
-      }
-
-      /* Page Break : use <div class="page"/> to insert page break
--------------------------------------------------------- */
-      .page {
-        page-break-after: always;
-      }
-    </style>
-
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <title>README</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dracula/highlightjs/dracula.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style> pre>code.hljs {padding: var(--spacing); color: rgb(162, 175, 185);} blockquote p {margin-bottom: 0;}</style>
+    <script>hljs.highlightAll();</script>
   </head>
   <body>
-    <script>
-      mermaid.initialize({
-        startOnLoad: true,
-        theme:
-          document.body.classList.contains('vscode-dark') ||
-          document.body.classList.contains('vscode-high-contrast')
-            ? 'dark'
-            : 'default',
-      });
-    </script>
-    <h1 id="demo-analyzing-rectangles">Demo Analyzing Rectangles</h1>
-    <h2 id="environment">Environment</h2>
-    <p>
-      This aplication is created using Node.js v18. It is recommended using
-      <strong><a href="https://github.com/creationix/nvm">nvm</a></strong> (Node
-      Version Manager) to manage Node.js versions. Go to
-      https://github.com/creationix/nvm and check the installation process for
-      your OS.
-    </p>
-    <p>
-      Make sure to set the env variables. For local environment you can create a
-      <code>.env</code> file with the following environment variables:
-    </p>
-    <pre class="hljs"><code><div>APP_HOST=localhost
+    <main>
+    <!-- markdownlint-disable MD033 -->
+<h1 id="analyzingrectangles">Analyzing Rectangles</h1>
+<p><a href="https://expressjs.com/">Express</a> + <a href="https://swagger.io/">Swagger</a> +
+<a href="https://tsoa-community.github.io/docs/introduction.html">tsoa</a></p>
+<p>This backend application consist of a REST API which exposes the 👉
+<a href="#endpoints"><em>endpoints</em></a> documented by Swagger at <code class="prettyprint">/docs</code> path. See the
+<a href="#swagger">Swagger</a> section for more details.</p>
+<h2 id="environment">Environment</h2>
+<p>This aplication is created using Node.js v20. It is recommended using
+<strong><a href="https://github.com/creationix/nvm">nvm</a></strong> (Node Version Manager) to manage
+Node.js versions. Go to
+<a href="https://github.com/creationix/nvm">github.com/creationix/nvm</a> and check the
+installation process for your OS.</p>
+<p>Make sure to set the env variables. For local environment you can create a <code class="prettyprint">.env</code> file with the following environment variables:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">APP_HOST=localhost
 APP_PORT=3004
-</div></code></pre>
-    <p>
-      After cloning the repository
-      <a href="https://github.com/jherax/rectangles-demo.git"
-        >rectangles-demo</a
-      >
-      you must install the dependencies by running in the terminal:
-    </p>
-    <pre class="hljs"><code><div>npm install
-</div></code></pre>
-    <h3 id="vs-code-extensions">VS Code Extensions</h3>
-    <p>
-      It is recommended to install de suggested VS Code extensions suggested in
-      the file <code>.vscode/extensions.json</code>.
-    </p>
-    <p>
-      To test the API, you can use the
-      <a
-        href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client"
-        >REST Client</a
-      >
-      extension, which allows you to send HTTP request and view the response in
-      VS Code.
-    </p>
-    <p>
-      Files with the extension <code>&quot;.http&quot;</code> are recognized by
-      REST Client. In roder to send a HTTP request, just select the query, then
-      press <code>F1</code>, and select:
-    </p>
-    <ul>
-      <li><strong>Rest Client: Send Request</strong></li>
-    </ul>
-    <h2 id="running-the-server">Running the server</h2>
-    <p>After all dependencies are installed, just run the command:</p>
-    <pre class="hljs"><code><div>npm run dev-server
-</div></code></pre>
-    <h2 id="testing">Testing</h2>
-    <p>To run all unit tests, just run the following command:</p>
-    <pre class="hljs"><code><div>npm run <span class="hljs-built_in">test</span>
-</div></code></pre>
-    <h2 id="build">Build</h2>
-    <p>To build in production mode, just run the following command:</p>
-    <pre class="hljs"><code><div>npm run build-all
-</div></code></pre>
-    <hr />
-    <h2 id="husky">husky</h2>
-    <p>
-      Edit <code>package.json</code> &gt; <code>prepare</code> script and run it
-      once:
-    </p>
-    <pre class="hljs"><code><div>npm run prepare
-</div></code></pre>
-    <p>
-      See:
-      <a href="https://github.com/conventional-changelog/commitlint"
-        >conventional-changelog/commitlint</a
-      >.
-    </p>
-    <h2 id="standard-version">standard-version</h2>
-    <p>
-      <code>standard-version</code> needs to have a starting point to append the
-      CHANGELOG and other versions to. Simply run:
-    </p>
-    <pre class="hljs"><code><div>npm run release -- --first-release
-</div></code></pre>
-    <h3 id="usage">Usage</h3>
-    <p>For a new release, just run</p>
-    <pre class="hljs"><code><div>npm run release
-</div></code></pre>
-    <p>
-      For more details, please visit the Github site
-      <a href="https://github.com/conventional-changelog/standard-version"
-        >standard-version</a
-      >
-    </p>
+</code></pre>
+<p>After cloning the repository
+<a href="https://github.com/jherax/rectangles-demo.git">rectangles-demo</a> you must
+install the dependencies by running in the terminal:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm install
+</code></pre>
+<h3 id="vscodeextensions">VS Code Extensions</h3>
+<p>It is recommended to install de suggested VS Code extensions suggested in the
+file <code class="prettyprint">.vscode/extensions.json</code>.</p>
+<p>To test the API, you can use the
+<a href="https://marketplace.visualstudio.com/items?itemName=humao.rest-client">REST Client</a>
+extension, which allows you to send HTTP request and view the response in VS
+Code.</p>
+<p>Files with the extension <code class="prettyprint">".http"</code> are recognized by REST Client. In roder to
+send a HTTP request, just select the query, then press <code class="prettyprint">F1</code>, and select:</p>
+<ul>
+<li><strong>Rest Client: Send Request</strong></li>
+</ul>
+<h2 id="runningtheserver">Running the server</h2>
+<p>After all dependencies are installed, just run the command:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm run dev:server
+</code></pre>
+<h2 id="swagger">Swagger</h2>
+<p>This projects uses
+<a href="https://tsoa-community.github.io/docs/getting-started.html">tsoa</a> along with <code class="prettyprint">swagger-ui-express</code> to generate the documentation. The folder <code class="prettyprint">src/swagger</code>
+contains files autogenerated by <code class="prettyprint">tsoa</code>, that includes routes and swagger spec
+files specified in <a href="./tsoa.json">tsoa.json</a>. The server uses <code class="prettyprint">['/docs', '/openapi', '/swagger']</code> routes to deliver static content with the
+API documentation generated by <code class="prettyprint">tsoa</code>.</p>
+<h2 id="testing">Testing</h2>
+<p>To run all unit tests, just run the following command:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm run test
+</code></pre>
+<h2 id="build">Build</h2>
+<p>To build in production mode, just run the following command:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm run build-all
+</code></pre>
+<hr />
+<h2 id="husky">husky</h2>
+<p>Edit <code class="prettyprint">package.json</code> &gt; <code class="prettyprint">prepare</code> script and run it once:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm run prepare
+</code></pre>
+<p>See:
+<a href="https://github.com/conventional-changelog/commitlint">conventional-changelog/commitlint</a>.</p>
+<h2 id="standardversion">standard-version</h2>
+<p> <code class="prettyprint">standard-version</code> needs to have a starting point to append the CHANGELOG and
+other versions to. Simply run:</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm run release -- --first-release
+</code></pre>
+<h3 id="usage">Usage</h3>
+<p>For a new release, just run</p>
+<pre class="prettyprint linenums"><code class="bash language-bash">npm run release
+</code></pre>
+<p>For more details, please visit the Github site
+<a href="https://github.com/conventional-changelog/standard-version">standard-version</a></p>
+<h2 id="endpoints">Endpoints</h2>
+<p>The following endpoints are exposed by Express:</p>
+<ul>
+<li> <code class="prettyprint">/adjacency</code></li>
+<li> <code class="prettyprint">/containment</code></li>
+<li> <code class="prettyprint">/intersection</code></li>
+</ul>
+<p>These are some base cases to analyze rectangles:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jherax/rectangles-demo/public/img/rectangles-cases-02.gif" alt="Rectangles base cases" width="600"/></p>
+<p>And these are some test cases for adjacency, containment, and intersection.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/jherax/rectangles-demo/public/img/rectangles-cases-01.png" alt="Rectangles test cases" width="600"/></p>
+    </main>
   </body>
 </html>

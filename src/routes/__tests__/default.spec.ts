@@ -21,7 +21,7 @@ describe("Testing router's default paths", () => {
   it('should serve the README file when calling GET "/"', async () => {
     const reply = await request(server).get('/');
     expect(reply.statusCode).toBe(200);
-    expect(reply.text).toMatch('Demo Analyzing Rectangles');
+    expect(reply.text).toMatch('Analyzing Rectangles');
     expect(reply.type).toBe('text/html');
   });
 
