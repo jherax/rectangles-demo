@@ -6,7 +6,8 @@
 [tsoa](https://tsoa-community.github.io/docs/introduction.html)
 
 This backend application consist of a REST API which exposes the 👉
-[_endpoints_](#endpoints) documented by Swagger at `/docs` path. See the
+[_endpoints_](#endpoints) documented by Swagger at
+[`APP_HOST:APP_PORT/docs`](http://localhost:3004/docs) path. See the
 [Swagger](#swagger) section for more details.
 
 ## Environment
@@ -53,6 +54,7 @@ send a HTTP request, just select the query, then press `F1`, and select:
 After all dependencies are installed, just run the command:
 
 ```bash
+npm run swagger # to generate server routes
 npm run dev:server
 ```
 
@@ -81,6 +83,22 @@ To build in production mode, just run the following command:
 ```bash
 npm run build-all
 ```
+
+## Endpoints
+
+The following endpoints are exposed by Express:
+
+- `/adjacency`
+- `/containment`
+- `/intersection`
+
+These are some base cases to analyze rectangles:
+
+<img src="https://cdn.jsdelivr.net/gh/jherax/rectangles-demo/public/img/rectangles-cases-02.gif" alt="Rectangles base cases" width="600"/>
+
+And these are some test cases for adjacency, containment, and intersection.
+
+<img src="https://cdn.jsdelivr.net/gh/jherax/rectangles-demo/public/img/rectangles-cases-01.png" alt="Rectangles test cases" width="600"/>
 
 ---
 
@@ -114,19 +132,3 @@ npm run release
 
 For more details, please visit the Github site
 [standard-version](https://github.com/conventional-changelog/standard-version)
-
-## Endpoints
-
-The following endpoints are exposed by Express:
-
-- `/adjacency`
-- `/containment`
-- `/intersection`
-
-These are some base cases to analyze rectangles:
-
-<img src="https://cdn.jsdelivr.net/gh/jherax/rectangles-demo/public/img/rectangles-cases-02.gif" alt="Rectangles base cases" width="600"/>
-
-And these are some test cases for adjacency, containment, and intersection.
-
-<img src="https://cdn.jsdelivr.net/gh/jherax/rectangles-demo/public/img/rectangles-cases-01.png" alt="Rectangles test cases" width="600"/>
