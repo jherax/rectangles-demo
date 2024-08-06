@@ -1,6 +1,7 @@
 import bodyparser from 'body-parser';
 import cors from 'cors';
 import express, {type Express} from 'express';
+import helmet from 'helmet';
 import http, {type Server} from 'http';
 
 import defaultRoutes from '../routes/default';
@@ -19,7 +20,8 @@ export const initServer = async () => {
   app.use(cors());
   app.use(bodyparser.json());
   app.use(bodyparser.urlencoded({extended: false}));
-  // Helmet: https://github.com/scottie1984/swagger-ui-express/issues/237#issuecomment-903628171
+  // https://blog.logrocket.com/using-helmet-node-js-secure-application/
+  app.use(helmet());
 
   defaultRoutes(app);
   RegisterRoutes(app);
